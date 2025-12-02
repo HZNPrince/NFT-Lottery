@@ -18,11 +18,7 @@ pub struct RequestRandomness<'info> {
     )]
     pub creator: Signer<'info>,
 
-    #[account(
-        mut,
-        seeds = [b"lottery", lottery.creator.as_ref(), lottery.nft_mint.as_ref()],
-        bump,
-    )]
+    #[account(mut)]
     pub lottery: Account<'info, Lottery>,
 
     /// CHECK: This is the randomness account checked by the orao vrf program
@@ -58,11 +54,7 @@ pub struct PickWinner<'info> {
     )]
     pub creator: Signer<'info>,
 
-    #[account(
-        mut,
-        seeds = [b"lottery", lottery.creator.as_ref(), lottery.nft_mint.as_ref()],
-        bump,
-    )]
+    #[account(mut)]
     pub lottery: Account<'info, Lottery>,
 
     #[account(

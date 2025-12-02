@@ -11,36 +11,18 @@ use crate::{
 
 #[derive(Accounts)]
 pub struct RewardWinner<'info> {
-    #[account(
-        mut,
-        address = lottery.winner.unwrap() @ LotteryError::AccessDenied
-    )]
+    #[account(mut)]
     pub winner: Signer<'info>,
 
     pub nft_mint: InterfaceAccount<'info, Mint>,
 
-    #[account(
-        mut,
-        seeds = [b"lottery", lottery.creator.as_ref(), nft_mint.key().as_ref()],
-        bump = lottery.bump,
-    )]
+    #[account(mut)]
     pub lottery: Account<'info, Lottery>,
 
-    #[account(
-        mut,
-        associated_token::mint = nft_mint,
-        associated_token::authority = lottery,
-        associated_token::token_program = token_program,
-    )]
+    #[account(mut)]
     pub nft_lottery_vault: InterfaceAccount<'info, TokenAccount>,
 
-    #[account(
-        init_if_needed,
-        payer = winner,
-        associated_token::mint = nft_mint,
-        associated_token::authority = winner,
-        associated_token::token_program = token_program,
-    )]
+    #[account(mut)]
     pub winner_nft: InterfaceAccount<'info, TokenAccount>,
 
     pub system_program: Program<'info, System>,

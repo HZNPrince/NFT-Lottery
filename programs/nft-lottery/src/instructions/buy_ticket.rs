@@ -10,11 +10,7 @@ pub struct BuyTicket<'info> {
     #[account(mut)]
     pub buyer: Signer<'info>,
 
-    #[account(
-        mut,
-        seeds = [b"lottery", lottery.creator.as_ref(), lottery.nft_mint.as_ref()],
-        bump,
-    )]
+    #[account(mut)]
     pub lottery: Account<'info, Lottery>,
 
     #[account(

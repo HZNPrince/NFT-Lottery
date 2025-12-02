@@ -5,7 +5,8 @@
     "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check"
   },
   "dependencies": {
-    "@coral-xyz/anchor": "^0.32.1"
+    "@coral-xyz/anchor": "^0.32.1",
+    "@orao-network/solana-vrf": "^0.7.0"
   },
   "devDependencies": {
     "@solana/spl-token": "^0.4.14",

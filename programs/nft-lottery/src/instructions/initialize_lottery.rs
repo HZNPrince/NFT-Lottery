@@ -22,7 +22,8 @@ pub struct CreateLottery<'info> {
     pub nft_mint: InterfaceAccount<'info, Mint>,
 
     #[account(
-        mut,
+        init_if_needed,
+        payer = creator,
         associated_token::mint = nft_mint,
         associated_token::authority = creator,
         associated_token::token_program = token_program,
